@@ -1,1 +1,180 @@
-Hello World
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Malen Nach Zahlen</title>
+
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="/styles/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/styles/mediascreen.css">
+    <link rel="stylesheet" type="text/css" href="/styles/controls.css">
+</head>
+
+<body>
+    <div class="leftFiller"></div>
+
+    <div class="mainContainer">
+
+        <!-- Menu -->
+        <div class="menuContainer">
+            <div id="menuItemHome" class="menuItem">Home</div>
+            <div id="menuItemKontakt" class="menuItem">Kontakt</div>
+            <div id="menuItemDatenschutz" class="menuItem">Datenschutz</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h1>Malen nach Zahlen</h1>
+
+            <p>Lass dir aus deinem Lieblingsfoto ein Bild zaubern, dass du selbst ausmalen kannst!</p>
+
+            <fieldset class="group" id="pickImageGroup">
+                <legend> 1. Schritt: Bild ausw&auml;hlen </legend>
+
+                <!-- Pick file link -->
+                <button id="pickFileButton" onclick="pickFile()" class="btn">&#x1F5CE; Bild ausw&auml;hlen</button>
+                <input type="file" id="imagePicker">
+
+                <br><br>
+
+                <!-- Image area -->
+                <img id="imageHolder" src="">
+                <canvas id="imageHolderCanvas"></canvas>
+
+            </fieldset>
+
+            <fieldset class="group" id="findColorsGroup">
+                <legend> 2. Schritt: Farben bestimmen </legend>
+
+                <div class="colorDivContainer" id="colorDivContainerId">
+                    <div id="c1" class="foundColorDiv"></div>
+                    <div id="c2" class="foundColorDiv"></div>
+                    <div id="c3" class="foundColorDiv"></div>
+                    <div id="c4" class="foundColorDiv"></div>
+                    <div id="c5" class="foundColorDiv"></div>
+                </div>
+
+                <br>
+
+                <!-- Find colors button -->
+                <button id="findColorsButton" class="btn">Farben finden</button>
+
+            </fieldset>
+
+            <fieldset class="group" id="detailsAndGenerateGroup">
+                <legend> 3. Schritt: Detailgrad </legend>
+
+                <table class="selectionTable">
+                    <tr>
+                        <td class="selectionLabel">Details:</td>
+                        <td class="selectionSelect">
+                            <select id="detailsSelect" class="selector">
+                                <option value="5">Hoch</option>
+                                <option value="4">Mittel-Hoch</option>
+                                <option value="3">Mittel</option>
+                                <option value="2">Niedrig-Mittel</option>
+                                <option value="1">Niedrig</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="selectionLabel">MedianFilter:</td>
+                        <td class="selectionSelect">
+                            <select id="medianSelect" class="selector">
+                                <option value="fast">Schnell</option>
+                                <option value="quality">Qualit&auml;t</option>
+                                <option value="old">Alt</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="shapeSelectRow">
+                        <td class="selectionLabel">Form:</td>
+                        <td class="selectionSelect">
+                            <select id="shapeSelect" class="selector">
+                                <option value="CIRCULAR">Kreis</option>
+                                <option value="DIAMOND">Diamant</option>
+                                <option value="RECTANGULAR">Rechteck</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+                <br><br>
+
+                <!-- Generate button -->
+                <button id="generateButton" class="btn">Generieren</button>
+
+            </fieldset>
+
+            <fieldset class="group" id="resultsGroup">
+                <legend> 4. Schritt: Ausmalen! </legend>
+
+                <!-- Results -->
+                <canvas id="resultOutlineCanvas" class="resultCanvas"></canvas>
+                <br>
+                <button id="downloadOutline" class="btn">Download Umrandung</button>
+                <br>
+                <br>
+                <canvas id="resultPreviewCanvas" class="resultCanvas"></canvas>
+                <br>
+                <button id="downloadPreview" class="btn">Download Vorschau</button>
+
+            </fieldset>
+
+            <!-- Modals -->
+            <!-- Canvas for found k-means colors -->
+            <canvas id="canvas" class="resultCanvas"></canvas>
+            <!-- Progress bar -->
+            <div id="progressContainer">
+                <div id="progressBar" style="display: none;"></div>
+            </div>
+
+            <div id="loadingSplash" class="splash">
+                <div class="loader"></div>
+                <span id="loadingSplashText">TEXT</span>
+            </div>
+
+            <!-- Info pages overlay -->
+            <div id="overlay">
+                <a href="javascript:void(0)" id="overlayClose">&times;</a>
+                <div id="Home" class="infoContent">HOME</div>
+                <div id="Kontakt" class="infoContent">KONTAKT</div>
+                <div id="Datenschutz" class="infoContent">
+                    <h1>Datenschutz</h1>
+                    Diese Internetseite <b>sammelt keine Daten</b> von Dir, daher gibt es hier auch keines der beliebten
+                    Cookie-Banner.<br>
+                    Das f&uuml;hrt dazu, dass diese Seite Dich jedes mal neu kennenlernt und Dir nicht deine letzten
+                    Bilder
+                    oder Einstellungen anzeigen oder wiederherstellen kann.
+                    Pass also darauf auf die Ergebnisse, die du behalten willst, auch sicher abzuspeichern.
+                    Du kannst die Bilder nat&uuml;rlich auch jederzeit neu erstellen lassen.<br>
+                    Das Bild verl&auml;sst zu keinem Zeitpunkt dein Ger&auml;t und wird nicht auf einen Server
+                    verschoben.
+                    <b>Jede Bearbeitung Deines Bildes passiert lokal auf deinem Endger&auml;t.</b>
+                </div>
+            </div>
+
+            <br>
+
+        </div>
+
+    </div>
+
+    <div class="rightFiller"></div>
+
+</body>
+
+<script src="/scripts/jquery-3.6.0.min.js"></script>
+<script src="/scripts/overlayController.js"></script>
+<script src="/scripts/imagePicker.js"></script>
+<script src="/scripts/outlines.js"></script>
+<script src="/scripts/labelGenerator.js"></script>
+<script src="/scripts/optimizedMedianFilter.js"></script>
+<script src="/scripts/simpleColors.js"></script>
+<script src="/scripts/kmeansColors.js"></script>
+<script src="/scripts/imageProcessor.js"></script>
+<script src="/scripts/colorPicker.js"></script>
+<script src="/scripts/downloadResults.js"></script>
+
+</html>

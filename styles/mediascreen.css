@@ -1,0 +1,33 @@
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-width: 1000px) {
+    .sidebar {
+        padding-top: 15px;
+        width: 55px;
+        left: 0;
+    }
+
+    .content {
+        /* margin-left: 55px; */
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+
+    .navName {
+        display: none;
+    }
+
+    .mainContainer {
+        width: 100%;
+        left: 0%;
+    }
+
+    .leftFiller {
+        width: 0;
+    }
+
+    .rightFiller {
+        width: 0;
+    }
+}

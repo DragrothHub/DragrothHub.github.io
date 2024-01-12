@@ -1,0 +1,27 @@
+/* Style the sidebar - fixed full height */
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 20%;
+    background-color: #6CC4A1;
+    overflow-x: hidden;
+    padding-top: 0px;
+    text-align: left;
+}
+
+/* Style sidebar links */
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 1.4em;
+    color: #fff2dc;
+    display: block;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+    color: #fff;
+}

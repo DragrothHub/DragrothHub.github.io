@@ -1,0 +1,73 @@
+/*
+    
+Colors:
+
+#2d8a9b blue (body)
+
+#6CC4A1 dark green (sidebar)
+
+#A0D995 light green (leftFiller + pickImageLink)
+
+#fff2dc (text)
+
+#fff (hover link)
+    
+*/
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2d8a9b;
+    color: #fff2dc;
+    text-align: center;
+}
+
+.menuContainer {
+    display: inline-flex;
+    background-color: #f7e0b8;
+    color: #2d8a9b;
+    width: 100%;
+}
+
+.menuItem {
+    display: block;
+    cursor: pointer;
+    margin: 1em auto;
+}
+
+.menuItem:hover {
+    color: #4ea6b6;
+}
+
+.content {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 1.2em;
+}
+
+.mainContainer {
+    position: relative;
+    left: 20%;
+    height: 100%;
+    width: 60%;
+}
+
+.leftFiller {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background-color: #A0D995;
+}
+
+.rightFiller {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background-color: #A0D995;
+}
